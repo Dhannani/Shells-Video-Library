@@ -48,7 +48,6 @@ export default function VideoUpload() {
 
     //var filename = document.getElementById("file-id").files[0].name;
 
-    alert(file);
 
     let formData = new FormData();
     formData.append("file", file);
@@ -87,6 +86,7 @@ export default function VideoUpload() {
           .post(URLMETADATA, videoObj)
           .then((res) => {
             console.log("ayy " + title);
+            alert("File Uploaded!")
             resetForm();
           })
           .catch((err) => {

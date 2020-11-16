@@ -4,7 +4,10 @@ let express = require("express"),
   (videoSchema = require("../Models/Videos"));
 fs = require("fs-extra");
 let path = require("path");
+var cloudinary = require("cloudinary").v2;
 var multer = require("multer");
+
+const cloudinaryConfig = require("../database/cloudinaryConfig");
 
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
@@ -41,31 +44,45 @@ router.route("/videoMetadata").post((req, res, next) => {
       overall: 0,
       total: 0,
       count: 0,
-      users: [req.body.userId], // TODO add req.body.userId here so user cant rate their own video  
+      users: [req.body.userId], // TODO add req.body.userId here so user cant rate their own video
     },
   };
 
   //console.log(video)
   file = req.body.file;
   src = "./videos/" + file;
-  dest = "../public/videos/" + file;
+  //dest = "../public/videos/" + file;
 
-  fs.move(src, dest)
-    .then(() => {
-      console.log("success!");
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  cloudinary.config(cloudinaryConfig);
+  cloudinary.uploader.upload_large(src, { resource_type: "video" }, function (
+    error,
+    result
+  ) {
+    if (result) {
+      console.log(result);
+      video.file = result.url;
+      fs.remove(src, (err) => {
+        // remove video from storage
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(file + " deleted");
+        }
+      });
 
-  videoSchema.create(video, (error, data) => {
-    if (error) {
-      console.log(error);
-      return next(error);
+      videoSchema.create(video, (error, data) => {
+        if (error) {
+          console.log(error);
+          return next(error);
+        } else {
+          console.log("Video data uploaded!");
+          console.log(data);
+          res.json(data);
+        }
+      });
     } else {
-      console.log("Video data uploaded!");
-      console.log(data);
-      res.json(data);
+      console.log(result, error);
+      res.send(err);
     }
   });
 });
@@ -87,7 +104,7 @@ router.route("/rate").put((req, res) => {
   userId = req.body.userId;
   videoId = req.body.videoId;
 
-  console.log(userId + "is rating..")
+  console.log(userId + "is rating..");
   // get video being rated
   videoSchema
     .findById(videoId)
@@ -167,16 +184,13 @@ router.route("/delete").delete((req, res) => {
       return next(error);
     } else {
       console.log("metadata removed from db");
-      filePath = "../public/videos/" + file;
-      fs.remove(filePath, (err) => {
-        // remove video from storage
-        if (err) {
-          return next(err);
-        } else {
-          console.log(file + " deleted");
-          res.status(200).json(data);
-        }
+      // TODO remove video from cloud storage
+      cloudinary.config(cloudinaryConfig);
+      cloudinary.uploader.destroy(file, function (result) {
+        console.log("File deleted")
+        console.log(result);
       });
+      res.send(data);
     }
   });
 });
@@ -205,18 +219,22 @@ router.route("/edit-video").put((req, res) => {
 // get video by id
 router.route("/:id").get((req, res) => {
   id = req.params.id;
-  videoSchema.findById(id).then(video => {
-    if(video) {
-      console.log(video);
-      res.send(video);
-    } else {
-      let str = "Video not found";
-      res.status(404).send(str);
-    }
-  }).catch(err => {
-    console.log("Video not found")
-    res.status(404).send(err)})
-})
+  videoSchema
+    .findById(id)
+    .then((video) => {
+      if (video) {
+        console.log(video);
+        res.send(video);
+      } else {
+        let str = "Video not found";
+        res.status(404).send(str);
+      }
+    })
+    .catch((err) => {
+      console.log("Video not found");
+      res.status(404).send(err);
+    });
+});
 
 module.exports = router;
 

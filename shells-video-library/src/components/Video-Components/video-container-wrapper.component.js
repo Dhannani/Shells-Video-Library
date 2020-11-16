@@ -45,7 +45,7 @@ export default function VideoContainerWrapper() {
 
     return (
         <div>
-            {isVideo && <VideoContainer video={video}/>}
+            {video && <VideoContainer video={video}/>}
         </div>
     )
 }
