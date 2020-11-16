@@ -4,7 +4,7 @@ export default function Video(file) {
   const FILEPATH = file.file;
 
   useEffect(() => {
-    console.log("FILEPATH: " + FILEPATH);
+    //console.log("FILEPATH: " + FILEPATH);
   }, [file]);
 
   return (

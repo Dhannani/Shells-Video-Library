@@ -33,9 +33,13 @@ export default function VideoFilter(child) {
     useEffect(() => {
         //console.log(child)
     }, [])
+
+    const sumbitFilter = () => {
+      
+    }
   return (
     <Card bg="dark">
-        <h1>Filter</h1>
+        <h1>Search</h1>
       <Form.Group controlId="Title">
         <Form.Label>Title</Form.Label>
         <Form.Control
@@ -87,7 +91,7 @@ export default function VideoFilter(child) {
 
 
       <Button variant="danger" size="lg" block="block" onClick={resetFilter}>
-        Reset Filters
+        Reset Search
       </Button>
     </Card>
   );

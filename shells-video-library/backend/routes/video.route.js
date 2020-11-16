@@ -90,10 +90,12 @@ router.route("/videoMetadata").post((req, res, next) => {
 
 // Get Videos
 router.route("/").get((req, res) => {
+  console.log("fetching videos")
   videoSchema.find((error, data) => {
     if (error) {
       return next(error);
     } else {
+      console.log(data)
       res.json(data);
     }
   });

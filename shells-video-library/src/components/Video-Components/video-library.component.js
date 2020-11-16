@@ -14,7 +14,7 @@ export default function VideoLibrary() {
     Title: "",
     Genre: "",
     ReleaseDate: "",
-    Rating: null,
+    Rating: -1,
   });
 
   return (
