@@ -105,7 +105,9 @@ dist
 
 # db info
 dbConfig.js
+cloudinaryConfig.js
 
 # video files
+videos/*
 .mp4
 .mov
