@@ -19,16 +19,17 @@ export default function UserVideos() {
   const [videos, setVideos] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
-  const URLUSERVIDEO = "http://localhost:4000/videos/user-videos",
-        URLEDITVIDEO = "http://localhost:4000/videos/edit-video",
-        URLDELETEVIDEO = "http://localhost:4000/videos/delete";
+  const URLUSERVIDEO =
+    "http://localhost:4000/videos/user-videos/" + authContext.id;
 
   useEffect(() => {
-    console.log("list refreshed")
+    if (!authContext.id) {
+      return;
+    }
+    console.log(URLUSERVIDEO);
+    console.log("list refreshed for user: " + authContext.id);
     axios
-      .get(URLUSERVIDEO, {
-        params: { id: authContext.id, email: authContext.email },
-      })
+      .get(URLUSERVIDEO)
       .then((res) => {
         console.log(res.data);
         setVideos(res.data);
@@ -36,11 +37,11 @@ export default function UserVideos() {
       .catch((err) => {
         console.log(err);
       });
-  }, [refresh]);
+  }, [refresh, authContext]);
 
-//   const submitEdit = () => {
+  //   const submitEdit = () => {
 
-//   }
+  //   }
 
   return (
     authContext.isLoggedIn && (
@@ -49,14 +50,20 @@ export default function UserVideos() {
           <Table striped bordered hover variant="dark">
             <thead>
               <tr>
-                <th>My Videos</th>
+                <th>
+                  <div>My Videos</div>
+                </th>
               </tr>
             </thead>
             <tbody>
               {videos.map((vid, index) => (
                 <div>
-
-                  <VideoTableRow video={vid} edit={true} refresh={refresh} setRefresh={setRefresh}/>
+                  <VideoTableRow
+                    video={vid}
+                    edit={true}
+                    refresh={refresh}
+                    setRefresh={setRefresh}
+                  />
                 </div>
               ))}
             </tbody>

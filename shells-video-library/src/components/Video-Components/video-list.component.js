@@ -36,17 +36,12 @@ export default function VideoList(child) {
       setVideos(
         videos.filter((vid) => !Moment(vid.releaseDate.split('T')[0]).isBefore(child.filter.ReleaseDate))
       )
-      // let vids = videos;
-      // for (const date in videos.ReleaseDate) {
-      //   if(Moment(date.split('T')[0]).isBefore(child.filter.ReleaseDate)) {
-      //     console
-      //   }
       }
       
   };
 
   useEffect(() => {
-    //console.log(child.children);
+    console.log("refreshing library");
     axios
       .get(BASEURL)
       .then((res) => {
@@ -56,8 +51,6 @@ export default function VideoList(child) {
           setVideos(res.data);
           console.log(videos);
           filterVideos();
-          //console.log(videos[0].file);
-          //setFile(videos[0].file);
         }
       })
       .catch((err) => {

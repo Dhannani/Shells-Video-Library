@@ -40,6 +40,11 @@ div{
   -webkit-text-stroke: none; 
 }
 
+.video-container-description {
+  font-size: 20px;
+  color: rgb(209, 218, 230);
+}
+
 
 .video-upload-file {
     vertical-align: top;
@@ -52,4 +57,5 @@ div{
 .video-table-row-edit-delete {
   float: right
 }
+
 

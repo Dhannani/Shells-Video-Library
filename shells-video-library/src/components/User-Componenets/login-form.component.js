@@ -14,9 +14,10 @@ export default function LoginForm() {
   const URL = "http://localhost:4000/users/log-in";
 
   let authContext = useContext(AuthContext)
-  const loginHandler = (token) => {
+  const loginHandler = (token, id) => {
     authContext.sEmail(email);
     authContext.login(token);
+    authContext.sId(id)
   };
 
   const handleSubmit = (evt) => {
@@ -30,7 +31,8 @@ export default function LoginForm() {
     axios.post(URL, user).then(res => {
         console.log(res.data)
         if(res.status === 200) {
-            loginHandler(res.data.token, email);
+          console.log(res.data.user._id)
+            loginHandler(res.data.token, res.data.user._id);
         }
         else {
             alert("Invalid email or password")

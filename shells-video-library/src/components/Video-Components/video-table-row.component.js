@@ -173,9 +173,9 @@ export default function VideoTableRow(child) {
           {!edit && (
             <th fluid="true">
               <Row>{TITLE}</Row>
-              <Row>{DESCRIPTION}</Row>
-              <Row>{GENRE}</Row>
               <Row>Uploaded by: {USER}</Row>
+              <Row>{GENRE}</Row>
+              <Row>{REALEASEDATE}</Row>
             </th>
           )}
           {edit && (

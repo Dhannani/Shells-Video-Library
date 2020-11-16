@@ -32,6 +32,7 @@ router.route("/uploadVideo").post(upload.single("file"), function (req, res) {
 
 // Store video metadata
 router.route("/videoMetadata").post((req, res, next) => {
+  console.log(req.body.userId)
   video = {
     email: req.body.email,
     userId: req.body.userId,
@@ -47,11 +48,11 @@ router.route("/videoMetadata").post((req, res, next) => {
       users: [req.body.userId], // TODO add req.body.userId here so user cant rate their own video
     },
   };
+  console.log(video)
 
   //console.log(video)
   file = req.body.file;
   src = "./videos/" + file;
-  //dest = "../public/videos/" + file;
 
   cloudinary.config(cloudinaryConfig);
   cloudinary.uploader.upload_large(src, { resource_type: "video" }, function (
@@ -161,8 +162,10 @@ router.route("/rate").put((req, res) => {
 });
 
 // get user's videos
-router.route("/user-videos").get((req, res) => {
-  userId = req.query.userId;
+router.route("/user-videos/:id").get((req, res) => {
+  console.log(req.params)
+  userId = req.params.id;
+  console.log("getting videos of user: " + userId)
   videoSchema.find({ userId: userId }, (error, data) => {
     if (error) {
       return next(error);

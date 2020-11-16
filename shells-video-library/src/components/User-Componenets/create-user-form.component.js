@@ -1,23 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
 
+import {AuthContext} from "../../context"
+
 export default function CreateUserForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const URL = "http://localhost:4000/users/create-user"
+  const URL = "http://localhost:4000/users/create-user",
+    URLLOGIN = "http://localhost:4000/users/log-in";
+
+  let authContext = useContext(AuthContext);
+  const loginHandler = (token, id) => {
+    authContext.sEmail(email);
+    authContext.login(token);
+    authContext.sId(id);
+  };
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    alert('Creating user ' + email);
+    //alert('Creating user ' + email);
     const user = {
         email: email,
         password: password
     }
     axios.post(URL, user).then(res => {
         console.log(res.data)
-    })
+        axios.post(URLLOGIN, user).then(res => {
+          console.log(res.data)
+          if(res.status === 200) {
+              loginHandler(res.data.token, res.data.user._id);
+          }
+          else {
+              alert(res.data)
+          }
+      })
+        
+    });
     setEmail("")
     setPassword("")
   };

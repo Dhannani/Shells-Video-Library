@@ -19,7 +19,7 @@ let videoSchema = new Schema(
         type: String
     },
 
-    userID: {
+    userId: {
       type: String
     },
 

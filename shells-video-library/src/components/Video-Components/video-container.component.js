@@ -115,6 +115,13 @@ export default function VideoContainer(child) {
             <div className="video-container-rating">{renderRate()}</div>
           </Col>
         </Row>
+        <Row>
+        <p className="video-container-seperator">---------------------------------------------------------</p>
+        </Row>
+        <Row>
+          <div className="video-container-description">{DESCRIPTION}</div>
+          </Row>
+       
       </Col>
     </div>
   );
