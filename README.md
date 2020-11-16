@@ -8,5 +8,6 @@
 5) run "npm install"
 6) run "nodemon"
 
-## Note
-Needs dbConfig.js file for backend to work
+## Notes
+- Needs dbConfig.js file for backend to work
+- Video files are stored locally while video metadata and users are stored in a MongoDB database
