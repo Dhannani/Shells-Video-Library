@@ -48,7 +48,7 @@ router.route("/videoMetadata").post((req, res, next) => {
       users: [req.body.userId], // TODO add req.body.userId here so user cant rate their own video
     },
   };
-  console.log(video)
+  //console.log(video)
 
   //console.log(video)
   file = req.body.file;
@@ -95,7 +95,7 @@ router.route("/").get((req, res) => {
     if (error) {
       return next(error);
     } else {
-      console.log(data)
+      //console.log(data)
       res.json(data);
     }
   });
@@ -107,7 +107,7 @@ router.route("/rate").put((req, res) => {
   userId = req.body.userId;
   videoId = req.body.videoId;
 
-  console.log(userId + "is rating..");
+  //console.log(userId + "is rating..");
   // get video being rated
   videoSchema
     .findById(videoId)
@@ -127,20 +127,6 @@ router.route("/rate").put((req, res) => {
           video.rating.users = [userId];
         }
 
-        // newCount = video.rating.count + 1;
-        // newTotal = video.rating.toal + rating;
-        // newOverall = newTotal / newCount;
-        // newUsers = video.rating.users.push(userId)
-
-        // newVideoRating = {
-        //   rating: {
-        //     total: newTotal,
-        //     count: newCount,
-        //     overall: newOverall,
-        //     users: newUsers,
-        //   }
-        //}
-
         videoSchema.findByIdAndUpdate(
           videoId,
           { $set: video },
@@ -150,7 +136,7 @@ router.route("/rate").put((req, res) => {
               return next(error);
             } else {
               console.log("Video Rating Updated");
-              console.log(data);
+              //console.log(data);
               return res.status(200).send(data);
             }
           }
@@ -193,7 +179,7 @@ router.route("/delete").delete((req, res) => {
       cloudinary.config(cloudinaryConfig);
       cloudinary.uploader.destroy(file, function (result) {
         console.log("File deleted")
-        console.log(result);
+        //console.log(result);
       });
       res.send(data);
     }
@@ -214,7 +200,7 @@ router.route("/edit-video").put((req, res) => {
         return next(error);
       } else {
         console.log("Video Updated");
-        console.log(data);
+        //console.log(data);
         return res.status(200).send(data);
       }
     });
