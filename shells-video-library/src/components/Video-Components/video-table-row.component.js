@@ -178,7 +178,10 @@ export default function VideoTableRow(child) {
               <Row>{REALEASEDATE}</Row>
             </th>
           )}
-          {edit && (
+          
+        </Link>
+
+        {edit && (
             <Container className="video-table-row-edit-container">
               <div>
                 <Form.Group controlId="Title">
@@ -223,7 +226,6 @@ export default function VideoTableRow(child) {
               </div>
             </Container>
           )}
-        </Link>
 
         {CANEDIT && (
           
