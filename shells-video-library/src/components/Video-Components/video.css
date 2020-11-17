@@ -1,23 +1,21 @@
-
-div{
+div {
   color: rgb(209, 218, 230);
 }
 .video-container-title {
-    /* -webkit-text-stroke: 2px black; */
-    text-align: center;
+  /* -webkit-text-stroke: 2px black; */
+  text-align: center;
 
-    font-family: Helvetica, sans-serif;
-     /* color:whitesmoke; */
-    color: rgb(209, 218, 230);
-    font-size: 75px;
-        /* margin: 0;
+  font-family: Helvetica, sans-serif;
+  /* color:whitesmoke; */
+  color: rgb(209, 218, 230);
+  font-size: 75px;
+  /* margin: 0;
         white-space:0; */
-   
 }
 .video-container-rating {
   float: left;
   position: relative;
-  white-space:0;
+  white-space: 0;
   padding: 0%;
 }
 
@@ -26,36 +24,63 @@ div{
   position: relative;
   padding: 0%;
   float: left;
-  white-space:0;
-  font-family: Arial, Helvetica, sans-serif; color: rgb(209, 218, 230);
-  -webkit-text-stroke: none; 
+  white-space: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(209, 218, 230);
+  -webkit-text-stroke: none;
 }
 .video-container-date {
   font-size: 20px;
   position: relative;
   padding: 0%;
   float: left;
-  white-space:0;
-  font-family: Arial, Helvetica, sans-serif; color: rgb(209, 218, 230);
-  -webkit-text-stroke: none; 
+  white-space: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(209, 218, 230);
+  -webkit-text-stroke: none;
 }
 
 .video-container-description {
   font-size: 20px;
   color: rgb(209, 218, 230);
+  text-align: left;
+  columns: 1;
+  break-inside: avoid-column; 
+  column-width: 600px;
 }
 
-
 .video-upload-file {
-    vertical-align: top;
+  vertical-align: top;
 }
 
 .video-table-row-edit-delete {
   float: right;
 }
 
-.video-table-row-edit-delete {
-  float: right
+.video-table-row-edit-form {
+  float: right;
+  column-width: 100%;
+  
 }
 
+.video-table-row-video-info {
+  column-width: 1000px;
+}
+
+.video-table-row-video-title,
+  .video-table-row-video-user,
+  .video-table-row-video-genre,
+  .video-table-row-video-releasedate,
+  .video-table-row-video-rating {
+  font-size: 20px;
+  padding-left: 5%;
+}
+
+.video-table-row-video-title {
+  font-size: 30px;
+}
+
+table {
+  align-self: center;
+}
 

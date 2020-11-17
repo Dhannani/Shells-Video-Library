@@ -33,6 +33,10 @@ export default function VideoTableRow(child) {
   const REALEASEDATE = Moment(child.video.releaseDate.split("T")[0]).format(
     "MMMM D, YYYY"
   );
+  const RATING =
+    child.video.rating.count === 0
+      ? "Rating: None"
+      : "Rating: " + child.video.rating.overall.toFixed(1);
   const CANEDIT = child.edit;
   const THUMBNAIL_WIDTH = 400,
     THUMBNAIL_HEIGHT = 300;
@@ -105,61 +109,14 @@ export default function VideoTableRow(child) {
     return true;
   };
 
-  // const videoEditForm = () => {
-  //   return (
-  //     <Container className="upload-video-container" fluid="true">
-  //       <Col md={{ offset: 4, span: 4 }}>
-  //         <div>
-  //           <Form.Group controlId="Title">
-  //             <Form.Label>Title</Form.Label>
-  //             <Form.Control
-  //               type="name"
-  //               value={title}
-  //               onChange={(e) => setTitle(e.target.value)}
-  //             />
-  //           </Form.Group>
-
-  //           <Form.Group controlId="Synopsis">
-  //             {/* <Form.Label>Description</Form.Label> */}
-  //             <Form.Control
-  //               type="textarea"
-  //               rows={4}
-  //               value={synopsis}
-  //               placeholder="Description (optional)"
-  //               onChange={(e) => setSynopsis(e.target.value)}
-  //             />
-  //           </Form.Group>
-
-  //           <Row>
-  //             <Col>
-  //               <DropdownButton
-  //                 variant="light"
-  //                 id="dropdown-basic-button"
-  //                 title={genre}
-  //               >
-  //                 {categories.map((category, index) => (
-  //                   <div>
-  //                     <Dropdown.Item onSelect={() => setGenre(category)}>
-  //                       {category}
-  //                     </Dropdown.Item>
-  //                   </div>
-  //                 ))}
-  //               </DropdownButton>
-  //             </Col>
-  //           </Row>
-  //           <button onClick={SubmitEditHandler}>Submit Changes</button>
-
-  //           {/* <Video file="video.mp4"/> */}
-  //         </div>
-  //       </Col>
-  //     </Container>
-  //   );
-  // };
-
   return (
     <div>
       <tr>
-        <Link classname="video-table-row-link" to={"video/" + child.video._id} style={{"text-decoration": "none"}}>
+        <Link
+          classname="video-table-row-link"
+          to={"video/" + child.video._id}
+          style={{ "text-decoration": "none" }}
+        >
           <th>
             <Video
               file={child.video.file}
@@ -167,90 +124,85 @@ export default function VideoTableRow(child) {
               width={THUMBNAIL_WIDTH}
               height={THUMBNAIL_HEIGHT}
             />
-            {/* <VideoContainer video={child.video} /> */}
           </th>
 
           {!edit && (
-            <th fluid="true">
-              <Row>{TITLE}</Row>
-              <Row>Uploaded by: {USER}</Row>
-              <Row>{GENRE}</Row>
-              <Row>{REALEASEDATE}</Row>
+            <th className="video-table-row-video-info">
+              <Row className="video-table-row-video-title">{TITLE}</Row>
+              <Row className="video-table-row-video-user">
+                Uploaded by: {USER}
+              </Row>
+              <Row className="video-table-row-video-genre">{GENRE}</Row>
+              <Row className="video-table-row-video-releasedate">
+                {REALEASEDATE}
+              </Row>
+              <Row className="video-table-row-video-rating">{RATING}</Row>
             </th>
           )}
-          
         </Link>
 
         {edit && (
-            <Container className="video-table-row-edit-container">
-              <div>
-                <Form.Group controlId="Title">
-                  <Form.Label>Title</Form.Label>
-                  <Form.Control
-                    type="name"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
-                </Form.Group>
+          <div className="video-table-row-edit-form">
+            <Form.Group controlId="Title">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type="name"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </Form.Group>
 
-                <Form.Group controlId="Synopsis">
-                  {/* <Form.Label>Description</Form.Label> */}
-                  <Form.Control
-                    type="textarea"
-                    value={synopsis}
-                    placeholder="Description (optional)"
-                    onChange={(e) => setSynopsis(e.target.value)}
-                  />
-                </Form.Group>
+            <Form.Group controlId="Synopsis">
+              {/* <Form.Label>Description</Form.Label> */}
+              <Form.Control
+                type="textarea"
+                value={synopsis}
+                placeholder="Description (optional)"
+                onChange={(e) => setSynopsis(e.target.value)}
+              />
+            </Form.Group>
 
-                <Row>
-                  <Col>
-                    <DropdownButton
-                      variant="light"
-                      id="dropdown-basic-button"
-                      title={genre}
-                    >
-                      {categories.map((category, index) => (
-                        <div>
-                          <Dropdown.Item onSelect={() => setGenre(category)}>
-                            {category}
-                          </Dropdown.Item>
-                        </div>
-                      ))}
-                    </DropdownButton>
-                  </Col>
-                </Row>
-                <button onClick={SubmitEditHandler}>Submit Changes</button>
-
-                {/* <Video file="video.mp4"/> */}
-              </div>
-            </Container>
-          )}
+            <Row>
+              <Col>
+                <DropdownButton
+                  variant="light"
+                  id="dropdown-basic-button"
+                  title={genre}
+                >
+                  {categories.map((category, index) => (
+                    <div>
+                      <Dropdown.Item onSelect={() => setGenre(category)}>
+                        {category}
+                      </Dropdown.Item>
+                    </div>
+                  ))}
+                </DropdownButton>
+              </Col>
+            </Row>
+            <button onClick={SubmitEditHandler}>Submit Changes</button>
+          </div>
+        )}
 
         {CANEDIT && (
-          
-            <th fluid="true" classname="video-table-row-edit-delete">
-              <Row>
-                <Button
-                  variant="warning"
-                  size="lg"
-                  block="block"
-                  onClick={() => SetEdit(!edit)}
-                >
-                  EDIT
-                </Button>
-              </Row>
+          <th fluid="true" classname="video-table-row-edit-delete">
+            <Button
+              variant="warning"
+              size="lg"
+              block="block"
+              onClick={() => SetEdit(!edit)}
+            >
+              EDIT
+            </Button>
 
-              <Button
-                variant="danger"
-                size="lg"
-                block="block"
-                onClick={deleteVideo}
-              >
-                DELETE
-              </Button>
-            </th>
-          
+            <Button
+              variant="danger"
+              size="lg"
+              block="block"
+              onClick={deleteVideo}
+            >
+              DELETE
+            </Button>
+          </th>
         )}
       </tr>
     </div>

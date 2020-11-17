@@ -88,9 +88,9 @@ export default function VideoContainer(child) {
 
   return (
     <div className="video-container">
-      <Col md={{ span: 6, offset: 4 }}>
+      <Col md={{ span: 4, offset: 4 }}>
         <Row>
-          <Col md={{ span: 6, offset: 1 }}>
+          <Col md={{ span: 6, offset: 2 }}>
             <div className="video-container-title">{TITLE}</div>
           </Col>
         </Row>
@@ -111,7 +111,7 @@ export default function VideoContainer(child) {
             <div className="video-container-date">{REALEASEDATE}</div>
             </Row>
           </Col>
-          <Col md={{ offset: 0 }}>
+          <Col md={{ offset: 3 }}>
             <div className="video-container-rating">{renderRate()}</div>
           </Col>
         </Row>

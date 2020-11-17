@@ -17,6 +17,7 @@ export default function App() {
   const [userEmail, setUserEmail] = useState(null);
   const [userId, setUserId] = useState(null);
 
+  // stores JWT info for authentication
   const store = (info) => {
     localStorage.setItem(
       "userData",
@@ -27,6 +28,7 @@ export default function App() {
     console.log(JSON.parse(localStorage.getItem("userData")));
   };
 
+  // retrieves JWT info
   const retrieve = () => {
     return localStorage.getItem("userData");
   };
@@ -59,16 +61,6 @@ export default function App() {
       //logout();
     }
     let token = JSON.parse(retrieve()).info;
-    //console.log("JWT: " + accessString);
-    //let authorized = authorize(accessString);
-    //console.log(authorized)
-    // if (authorized) {
-    //   console.log("is logged in")
-    //   setLoggedIn(true);
-    // } else {
-    //   console.log("not logged in")
-    //   //logout();
-    // }
 
     axios
       .get("http://localhost:4000/users/authorize", {
@@ -84,7 +76,7 @@ export default function App() {
           setUserId(res.data._id)
         } else {
           console.log("unauthorized")
-          setLoggedIn(false);
+          logout();
         }
       })
       .catch((err) => {

@@ -45,8 +45,8 @@ export default function UserVideos() {
 
   return (
     authContext.isLoggedIn && (
-      <Container className="user-video-list-container" fluid="false">
-        <Col md={{ span: 7, offset: 3 }}>
+      <Container className="user-video-list-container" fluid="true">
+        <Col md={{ span: 5, offset: 4 }}>
           <Table striped bordered hover variant="dark">
             <thead>
               <tr>
