@@ -42,3 +42,27 @@
   font-size: 15px;
   color: #282c34
 }
+
+.navbar-home-link {
+  font-size: 15px;
+  background: rgb(209, 218, 230);
+  border: 3px solid rgb(209, 218, 230);
+  display: inline-block;
+  width: 100px;
+  padding: 0%;
+  color:#282c34;
+  border-radius: 15px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+div{
+  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.nav-item {
+  color: #282c34;
+}
+
+.nav-link {
+  color: #282c34;
+}

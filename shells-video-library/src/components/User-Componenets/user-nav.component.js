@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap/dist/css/bootstrap.css";
+import "../../App.css"
 
 import { BrowserRouter as Route, Link } from "react-router-dom";
 

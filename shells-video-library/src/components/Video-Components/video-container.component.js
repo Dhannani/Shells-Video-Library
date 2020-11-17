@@ -72,14 +72,12 @@ export default function VideoContainer(child) {
         <div>
           <Ratings
             rating={rating}
-            widgetDimensions="40px"
-            widgetSpacings="15px"
           >
             <Ratings.Widget widgetDimension="30px" />
             <Ratings.Widget widgetDimension="30px" />
             <Ratings.Widget widgetDimension="30px" />
             <Ratings.Widget widgetDimension="30px" />
-            <Ratings.Widget />
+            <Ratings.Widget widgetDimension="30px" />
           </Ratings>
         </div>
       );
@@ -116,7 +114,7 @@ export default function VideoContainer(child) {
           </Col>
         </Row>
         <Row>
-        <p className="video-container-seperator">---------------------------------------------------------</p>
+        <p className="video-container-seperator">------------------------------------------------</p>
         </Row>
         <Row>
           <div className="video-container-description">{DESCRIPTION}</div>

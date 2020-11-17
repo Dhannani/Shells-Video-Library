@@ -26,7 +26,7 @@ export default function VideoLibrary() {
             <VideoFilter setFilter={setFilter} filter={filter} />
           </Col>
 
-          <Col md={{ span: 4, offset: 1 }}>
+          <Col md={{ span: 4, offset: 2 }}>
             <Table striped bordered hover variant="dark">
               <thead>
                 <tr>

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import Nav from "react-bootstrap/Nav";
-//import Cookie from "js-cookie";
+import "../App.css"
 
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
@@ -37,18 +37,24 @@ export default function NavBar() {
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <Link to={"/videos"} className="nav-link">
+                <div className="nav-link">
                 Search Videos
+                </div>
               </Link>
             </li>
             <li class="nav-item">
             <Link to={"/upload"} className="nav-link">
+            <div className="nav-link"> 
                 Upload
+                </div>
               </Link>
             </li>
             {authContext.isLoggedIn && (
             <li class="nav-item">
             <Link to={"/my-videos"} className="nav-link">
+              <div className="nav-link">
                 My Videos
+                </div>
               </Link>
             </li>
             )}

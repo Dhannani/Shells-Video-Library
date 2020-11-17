@@ -34,9 +34,6 @@ export default function VideoFilter(child) {
         //console.log(child)
     }, [])
 
-    const sumbitFilter = () => {
-      
-    }
   return (
     <Card bg="dark">
         <h1>Search</h1>
