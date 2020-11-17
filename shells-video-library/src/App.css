@@ -46,7 +46,7 @@
 .navbar-home-link {
   font-size: 15px;
   background: rgb(209, 218, 230);
-  border: 3px solid rgb(209, 218, 230);
+  border: 3px solid #282c34;
   display: inline-block;
   width: 100px;
   padding: 0%;
@@ -66,3 +66,4 @@ div{
 .nav-link {
   color: #282c34;
 }
+

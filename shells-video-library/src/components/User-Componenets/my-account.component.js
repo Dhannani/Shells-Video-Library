@@ -13,14 +13,9 @@ export default function MyAccount() {
     <div>
       {authContext.isLoggedIn && (
         <div>
-            
           <Container className="user-wrapper" fluid="true">
-            <Row md={{ span: 12, offset: 6 }}>
-            
-              <></>
-            </Row>
             <Col fluid="true" md={{ span: 3, offset: 5 }}>
-            <h1 className="my-account-header"> Manage Account </h1>
+              <h1 className="my-account-header"> Manage Account </h1>
               <EditUser />
             </Col>
           </Container>

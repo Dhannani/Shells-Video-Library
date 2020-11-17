@@ -73,7 +73,7 @@ export default function EditUserForm() {
       <Form.Group controlId="text">
         <Form.Label>Change Password</Form.Label>
         <Form.Control
-          type="text"
+          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -82,7 +82,7 @@ export default function EditUserForm() {
       <Form.Group controlId="text">
         <Form.Label>Old Password</Form.Label>
         <Form.Control
-          type="text"
+          type="password"
           value={securePassword}
           onChange={(e) => setSecurePassword(e.target.value)}
         />
