@@ -2,10 +2,10 @@
 
 ## Setup
 1) move your "cloudinaryConfig.js" and "dbConfig.js" files into shells-video-library/backend/database/
-2) Navigate to "shells-video-library/"
+2) Navigate to shells-video-library/
 3) run "npm install"
 4) run "npm start"
-5) In seperate terminal, navigate to "shells-video-library/backend/"
+5) In seperate terminal, navigate to shells-video-library/backend/
 6) run "npm install"
 7) run "nodemon"
 
