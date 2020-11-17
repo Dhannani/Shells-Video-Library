@@ -16,6 +16,7 @@
 - player will not play every type of videeo file, namely .mov files will not play
 - the "Release Date" filter works by filtering out video release BEFORE the selected date
 
+
 ## Future Improvements
 ### Functional
 - update videos to reflect a user's new email when user changes email
@@ -25,6 +26,7 @@
 - filter video search results in the backend for scaleability
 - allow user to change rating on video they have already rated
 - store jwt authentication in a cookie rather than localstorage to improve security
+- For an unknown reason when filtering, the thunbail does not update to reflect the correct video in table, however the link and table data is not affected. The still takes you to the correct video, only the thumbnail is affected yet the thumbail link is correct when inspected. This needs to be fixed.
 ### UI
 - show a loading icon while a video is being uploaded
 - change login and create account to be a pop up
